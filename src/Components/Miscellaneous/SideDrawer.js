@@ -104,7 +104,9 @@ const SideDrawer = () => {
         config
       );
 
-      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+      if (!chats.find((c) => c._id === data._id)) {
+        setChats([data, ...chats]);
+      }
 
       setSelectedChat(data);
       setLoadingChat(false);
@@ -201,7 +203,7 @@ const SideDrawer = () => {
                 );
               })
             )}
-            {loadingChat && <Spinner ml="auto" d="flex" />}
+            {loadingChat && <Spinner ml="auto" display="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
