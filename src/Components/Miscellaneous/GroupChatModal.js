@@ -159,11 +159,9 @@ const GroupChatModal = ({ children }) => {
               <Input
                 placeholder="Add Users"
                 mb={3}
-                onChange={(e) =>
-                  setTimeout(() => {
-                    handleSearch(e.target.value);
-                  }, 500)
-                }
+                onChange={(e) => {
+                  handleSearch(e.target.value);
+                }}
               />
             </FormControl>
             <Box w="100%" display="flex" flexWrap="wrap">

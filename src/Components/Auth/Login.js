@@ -11,8 +11,10 @@ import {
   VStack,
   useToast,
 } from "@chakra-ui/react";
+import { ChatState } from "../../Context/ChatProvider";
 
 const Signup = () => {
+  const { setUser } = ChatState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [loading, setLoading] = useState(false);
@@ -42,7 +44,7 @@ const Signup = () => {
     try {
       const config = {
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json; charset=utf-8",
         },
       };
 
@@ -60,7 +62,11 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+
       localStorage.setItem("userInfo", JSON.stringify(data));
+      const userInfo1 = JSON.parse(localStorage.getItem("userInfo"));
+      setUser(userInfo1);
+
       setLoading(false);
       navigate("/chat");
     } catch (error) {
