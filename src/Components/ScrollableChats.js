@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Avatar, Tooltip } from "@chakra-ui/react";
-import ScrollToBottom from "react-scroll-to-bottom";
 import {
   isLastMessage,
   isSameSender,
@@ -11,15 +10,15 @@ import { ChatState } from "../Context/ChatProvider";
 
 const ScrollableChats = ({ messages }) => {
   const { user } = ChatState();
-  const messagesEndRef = useRef(null);
 
+  const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
   return (
     <div>
       {messages &&
