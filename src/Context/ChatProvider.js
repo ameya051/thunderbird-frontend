@@ -31,7 +31,7 @@ function getLocalStorage(key, initialValue) {
 }
   
   const [selectedChat, setSelectedChat] = useState();
-  const [user, setUser] = useState(() => getLocalStorage("userInfo", initialState));
+  const [user, setUser] = useState(() => getLocalStorage("userInfo", initState));
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState([]);
 
