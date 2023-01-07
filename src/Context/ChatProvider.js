@@ -13,19 +13,17 @@ const ChatProvider = ({ children }) => {
   
   useEffect(() => {
   function checkUserData() {
-    const item = localStorage.getItem('userInfo')
-
+    const item = JSON.parse(localStorage.getItem("userInfo"));
+    
+    if (!item) {
+      navigate("/");
+    }
     if (item) {
       setUser(item)
     }
   }
 
   window.addEventListener('storage', checkUserItem)
-    
-    if (!item) {
-      navigate("/");
-    }
-
   return () => {
     window.removeEventListener('storage', checkUserItem)
   }
