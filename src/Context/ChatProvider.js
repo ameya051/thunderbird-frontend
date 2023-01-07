@@ -4,30 +4,44 @@ import { useNavigate } from "react-router-dom";
 const ChatContext = createContext();
 
 const ChatProvider = ({ children }) => {
+  var initState={
+    _id: "",
+    name: "",
+    email:"",
+    pic: "",
+    token: "",
+    
+  }
+  
+  function setLocalStorage(key, value) {
+  try {
+    window.localStorage.setItem("userInfo", JSON.stringify(value));
+  } catch (e) {
+    console.log(e);
+  }
+}
+function getLocalStorage(key, initialValue) {
+  try {
+    const value = window.localStorage.getItem(key);
+    return value ? JSON.parse(value) : initialValue;
+  } catch (e) {
+    // if error, return initial value
+    return initialValue;
+  }
+}
+  
   const [selectedChat, setSelectedChat] = useState();
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(() => getLocalStorage("user", initialState));
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState([]);
 
   const navigate = useNavigate();
   
+  
+  
   useEffect(() => {
-  function checkUserData() {
-    const item = JSON.parse(localStorage.getItem("userInfo"));
-    
-    if (!item) {
-      navigate("/");
-    }
-    if (item) {
-      setUser(item)
-    }
-  }
-
-  window.addEventListener('storage', checkUserData)
-  return () => {
-    window.removeEventListener('storage', checkUserData)
-  }
-}, [])
+    setLocalStorage("userInfo", user);
+  }, [user]);
 
   return (
     <ChatContext.Provider
