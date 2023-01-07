@@ -20,9 +20,9 @@ const ChatProvider = ({ children }) => {
     console.log(e);
   }
 }
-function getLocalStorage(key, initialValue) {
+function getLocalStorage(initialValue) {
   try {
-    const value = window.localStorage.getItem(key);
+    const value = window.localStorage.getItem("userInfo");
     return value ? JSON.parse(value) : initialValue;
   } catch (e) {
     // if error, return initial value
