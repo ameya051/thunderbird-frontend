@@ -31,7 +31,7 @@ function getLocalStorage(initialValue) {
 }
   
   const [selectedChat, setSelectedChat] = useState();
-  const [user, setUser] = useState(() => getLocalStorage("userInfo", initState));
+  const [user, setUser] = useState();
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState([]);
 
@@ -40,8 +40,8 @@ function getLocalStorage(initialValue) {
   
   
   useEffect(() => {
-    setLocalStorage("userInfo", user);
-  }, [user]);
+    getLocalStorage("userInfo", user);
+  }, []);
 
   return (
     <ChatContext.Provider
