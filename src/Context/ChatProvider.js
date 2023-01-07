@@ -23,9 +23,9 @@ const ChatProvider = ({ children }) => {
     }
   }
 
-  window.addEventListener('storage', checkUserItem)
+  window.addEventListener('storage', checkUserData)
   return () => {
-    window.removeEventListener('storage', checkUserItem)
+    window.removeEventListener('storage', checkUserData)
   }
 }, [])
 
